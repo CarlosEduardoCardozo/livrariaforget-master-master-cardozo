@@ -4,34 +4,35 @@ export default {
   data() {
     return {
       Id: "",
-      Senha: "",
+      UserName: "",
+      Email: "",
       Nome: "",
-      Site: "",
-      editoras: [],
+      Senha: "",
+      usuarios: [],
     };
   },
   methods: {
     salvar() {
       if (this.Id !== "") {
         const novo_id = uuid();
-        this.editoras.push({
+        this.usuarios.push({
           id: novo_id,
           Id: this.Id,
-          Senha: this.Senha,
+          UserName: this.UserName,
           Email: this.Email,
-          Site: this.Site,
-          SenhaUsuario: this.Senha,
+          Nome: this.Nome,
+          Senha: this.Senha,
         });
         this.Id = "";
-        this.Senha = "";
+        this.UserName = "";
         this.Email = "";
         this.Nome = "";
         this.Senha = "";
       }
     },
-    excluir(editora) {
-      const indice = this.editoras.indexOf(editora);
-      this.editoras.splice(indice, 1);
+    excluir(usuario) {
+      const indice = this.usuarios.indexOf(usuario);
+      this.usuarios.splice(indice, 1);
     },
     alerta() {
       alert("Ok!");
@@ -57,29 +58,29 @@ export default {
     <input
       class="pesq2"
       type="text"
-      placeholder="Username"
-      v-model="Nome"
+      placeholder="UserName"
+      v-model="UserName"
       @keyup.enter="salvar"
     />
     <input
       class="pesq3"
       type="text"
       placeholder="Email"
-      v-model="Site"
+      v-model="Email"
       @keyup.enter="salvar"
     />
     <input
       class="pesq4"
       type="text"
       placeholder="Nome"
-      v-model="Senha"
+      v-model="Nome"
       @keyup.enter="salvar"
     />
     <input
       class="pesq5"
       type="text"
       placeholder="Senha"
-      v-model="SenhaUsuario"
+      v-model="Senha"
       @keyup.enter="salvar"
     />
     <button @click="salvar" class="btncad">OK</button>
@@ -88,23 +89,23 @@ export default {
     <thead>
       <tr>
         <td>Id</td>
+        <td>UserName</td>
+        <td>Email</td>
         <td>Nome</td>
-        <td>Site</td>
         <td>Senha</td>
-        <td>Nome</td>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="editora in editoras" :key="editora.id">
-        <td>{{ editora.Id }}</td>
-        <td>{{ editora.Nome }}</td>
-        <td>{{ editora.Site }}</td>
-        <td>{{ editora.Senha }}</td>
-        <td>{{ editora.NomeUsuario }}</td>
+      <tr v-for="usuario in usuarios" :key="usuario.id">
+        <td>{{ usuario.Id }}</td>
+        <td>{{ usuario.UserName }}</td>
+        <td>{{ usuario.Email }}</td>
+        <td>{{ usuario.Nome }}</td>
+        <td>{{ usuario.Senha }}</td>
 
         <td>
-          <button class="btnedit" @click="alerta(editora)">Editar</button>
-          <button class="btnexcluir" @click="excluir(editora)">Excluir</button>
+          <button class="btnedit" @click="alerta(usuario)">Editar</button>
+          <button class="btnexcluir" @click="excluir(usuario)">Excluir</button>
         </td>
       </tr>
     </tbody>
@@ -277,6 +278,7 @@ table {
   border: 1px solid #3b2020;
   font-size: 1.1rem;
   text-align: center;
+  margin-left: 2.99%;
   color: #300707;
 }
 table thead {
